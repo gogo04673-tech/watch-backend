@@ -1,6 +1,7 @@
 <?php
 $token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZGRlY2E1MTNkNDYwYmMyMjhjYjJlMWY4MzU1NDcxNiIsIm5iZiI6MTc1Njc0NTM1MC4zNDIwMDAyLCJzdWIiOiI2OGI1Y2U4NjI1ZTEwM2I4OWYzOTgzOTciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0._UMRFHywtIK-S-i9on1UnVdtP29tKu22dVqLQoqDwtQ"; // ضع التوكن الخاص بك
-$url = "https://api.themoviedb.org/3/trending/movie/day"; // ترند أفلام + مسلسلات اليوم
+
+$url = "https://api.themoviedb.org/3/tv/popular";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -10,6 +11,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/json;charset=utf-8"
 ]);
 
+
 $response = curl_exec($ch);
 curl_close($ch);
 
@@ -17,6 +19,6 @@ $data = json_decode($response, true);
 
 echo json_encode([
     "status" => "success",
-    "message" => "Trending movies fetched successfully",
+    "message" => "Popular tv fetched successfully",
     "data" => $data['results']
 ]);
